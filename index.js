@@ -1,7 +1,7 @@
 
 
 // The provided course information.
-const CourseInfo = {
+const courseInfo = {
   id: 451,
   name: "Introduction to JavaScript"
 };
@@ -35,7 +35,7 @@ const assignmentGroup = {
 };
 
 // The provided learner submission data.
-const LearnerSubmissions = [
+const learnerSubmissions = [
   {
     learner_id: 125,
     assignment_id: 1,
@@ -167,8 +167,6 @@ function getLearnerData(course, assignmentGroup, submissions) {
 
 
 // The function returns the final result array.
-// const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
+const result = getLearnerData(courseInfo, assignmentGroup, learnerSubmissions);
 
-// console.log(result);
-
-
+console.log(result);
