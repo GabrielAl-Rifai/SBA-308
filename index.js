@@ -130,6 +130,39 @@ function calculateWeightedAverage(submissions, assignments) {
 // The getLearnerData function iterates through the submissions, checks if the learner already exists in the result array, and creates a new entry they're not
 // It then finds the corresponding learner and assignment, calculates the score, and updates the learner's data
 // It throws an error if an error condition is met i.e, AssignmentGroup does not belong to its course
+ 
+function getLearnerData(course, assignmentGroup, submissions) {
+  const result = [];
+
+  for (const submission of submissions) {
+    const learnerIndex = result.findIndex(learner => learner.id === submission.learner_id);
+
+    if (learnerIndex === -1) {
+      // If learner not found, create a new entry
+      const newLearner = {
+        id: submission.learner_id,
+        avg: 0,
+      };
+
+      newLearner[submission.assignment_id] = 0; // Initialize assignment score
+
+      result.push(newLearner);
+    }
+
+    const learner = result.find(learner => learner.id === submission.learner_id);
+    const assignment = assignmentGroup.assignments.find(a => a.id === submission.assignment_id);
+
+    if (assignment && course.id === assignmentGroup.course_id) {
+      const assignmentScore = deductLateSubmissionPenalty(submission, assignment) / assignment.points_possible;
+      learner.avg = calculateWeightedAverage(submissions.filter(s => s.learner_id === submission.learner_id), assignmentGroup.assignments);
+      learner[submission.assignment_id] = assignmentScore;
+    } else {
+      throw new Error("Invalid input: AssignmentGroup does not belong to its course.");
+    }
+  }
+
+  return result;
+}
 
 
 
