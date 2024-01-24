@@ -7,7 +7,7 @@ const CourseInfo = {
 };
 
 // The provided assignment group.
-const AssignmentGroup = {
+const assignmentGroup = {
   id: 12345,
   name: "Fundamentals of JavaScript",
   course_id: 451,
@@ -78,7 +78,7 @@ const LearnerSubmissions = [
   }
 ];
 
-function getLearnerData(course, ag, submissions) {
+function getLearnerData(course, assignmentGroup, submissions) {
   // here, we would process this data to achieve the desired result.
   const result = [
     {
@@ -115,11 +115,25 @@ function calculateWeightedAverage(submissions, assignments) {
     }
   }
 
+  return totalPoints !== 0 ? totalScore / totalPoints : 0;
+}
+
+  // The deductLateSubmissionPenalty function deducts 10% from the score based on the due date and submission date
+  function deductLateSubmissionPenalty(submission, assignment) {
+    const latePenalty = 0.1;
+    const dueDate = new Date(assignment.due_at);
+    const submissionDate = new Date(submission.submitted_at);
+  
+    return submissionDate > dueDate ? submission.submission.score * (1 - latePenalty) : submission.submission.score;
+  }
+
+// The getLearnerData function iterates through the submissions, checks if the learner already exists in the result array, and creates a new entry they're not
+// It then finds the corresponding learner and assignment, calculates the score, and updates the learner's data
+// It throws an error if an error condition is met i.e, AssignmentGroup does not belong to its course
 
 
 
-
-
+// The function returns the final result array.
 // const result = getLearnerData(CourseInfo, AssignmentGroup, LearnerSubmissions);
 
 // console.log(result);
