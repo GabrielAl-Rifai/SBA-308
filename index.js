@@ -127,9 +127,9 @@ function calculateWeightedAverage(submissions, assignments) {
     return submissionDate > dueDate ? submission.submission.score * (1 - latePenalty) : submission.submission.score;
   }
 
-// The getLearnerData function iterates through the submissions, checks if the learner already exists in the result array, and creates a new entry they're not
-// It then finds the corresponding learner and assignment, calculates the score, and updates the learner's data
-// It throws an error if an error condition is met i.e, AssignmentGroup does not belong to its course
+// The getLearnerData function iterates through submissions, checks if the learner already exists in the result array, and creates a new entry they're not
+// Then it looks for the corresponding learner and assignment, calculates the score, and updates the learner's data
+// It throws an error if AssignmentGroup does not belong to its course
  
 function getLearnerData(course, assignmentGroup, submissions) {
   const result = [];
@@ -163,7 +163,6 @@ function getLearnerData(course, assignmentGroup, submissions) {
 
   return result;
 }
-
 
 
 // The function returns the final result array.
