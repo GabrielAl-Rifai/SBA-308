@@ -13,7 +13,6 @@ This JavaScript program is designed to analyze learner data and transform it int
 - [Functions](#functions)
 - [Input Data](#input-data)
 - [Output Format](#output-format)
-- [Example](#example)
 
 
 ## Requirements
